@@ -7,48 +7,56 @@ const PropertiesReader = require('properties-reader');
 //   console.log("Server started");
 //   });
 (async () => {
-    const prop = PropertiesReader('./Config.properties');
-    getProperty = (pty) => {return prop.get(pty);}
+    // const prop = PropertiesReader('C:/Users/sriranjanis/Documents/Gmail_Login/Config.properties');
+    // getProperty = (pty) => {return prop.get(pty);}
     const browser = await puppeteer.launch({ headless: false,defaultViewport: null,
-        args: ['--start-maximized'] , executablePath:"C:/Users/sriranjanis/AppData/Local/Google/Chrome/Application/chrome.exe"})
+        args: ['--start-maximized'] })
+        // executablePath:"C:/Users/sriranjanis/AppData/Local/Google/Chrome/Application/chrome.exe"}
     const page = await browser.newPage()
 
-    const navigationPromise = page.waitForNavigation()
+    // const navigationPromise = page.waitForNavigation()
 
 
     try {
         
-          await page.goto(getProperty('url'))
+          await page.goto('https://accounts.google.com/')
+
+          console.log("browser launched!!!!!!!!!!!!!!!!!!!!!!")
+
+          await page.setDefaultTimeout(50000);  
+          await page.setDefaultNavigationTimeout(50000);
         
-          await navigationPromise
+          // await navigationPromise
         
           await page.screenshot({ path: `Gmail_Screenshots/LoginPage.png` })
         
-          await page.waitForSelector(getProperty('uname_xpath'))
-          await page.click(getProperty('uname_xpath'))
+          await page.waitForSelector('input[type="email"]')
+          await page.click('input[type="email"]')
           
           // await page.setContent('<h1 style="border:Red; border-width:5px; border-style:solid;"> Gmail Login!!! </h1>')
           // await page.emulateMedia('screen')
 
         
-          await navigationPromise
+          // await navigationPromise
         
            //username
-          await page.type(getProperty('uname_xpath'), getProperty('username'))
+          await page.type('input[type="email"]', 'puppeteerlogin23@gmail.com')
           await page.screenshot({ path: `Gmail_Screenshots/username.png` })
+          console.log("username entered!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         
           await page.waitForSelector('#identifierNext')
           await page.click('#identifierNext')
         
-          await page.waitFor(1000);
+          await page.waitForTimeout(1000);
         
-          await page.waitForSelector(getProperty('pwrd_xpath'))
-          await page.click(getProperty('uname_xpath'))
-          await page.waitFor(1000);
+          await page.waitForSelector('input[type="password"]')
+          await page.click('input[type="email"]')
+          await page.waitForTimeout(1000);
         
           //password
-          await page.type(getProperty('pwrd_xpath'), getProperty('password'))
+          await page.type('input[type="password"]', 'gmail@123')
           await page.screenshot({ path: `Gmail_Screenshots/password.png` })
+          console.log("password entered!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
         //   await page.pdf({
         //     printBackground: true,
@@ -64,13 +72,13 @@ const PropertiesReader = require('properties-reader');
         
           await page.waitForSelector('#passwordNext')
           await page.click('#passwordNext')
-          await page.waitFor(1000);
-          await navigationPromise
+          await page.waitForTimeout(1000);
+          // await navigationPromise
           
-          await page.waitFor(3000);
+          await page.waitForTimeout(3000);
           await page.screenshot({ path: `Gmail_Screenshots/HomePage.png` })
 
-          await page.setViewport({width:1440,height:900,deviceScaleFactor:2})
+          // await page.setViewport({width:1440,height:900,deviceScaleFactor:2})
 
           
 
