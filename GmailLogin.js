@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const PropertiesReader = require('properties-reader');
-const express = require("express");
-const app = express();
+// const express = require("express");
+// const app = express();
 
 // app.listen(3000, () => {
 //   console.log("Server started");
