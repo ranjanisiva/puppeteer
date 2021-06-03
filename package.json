@@ -22,7 +22,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "node demo.js"
+    "test": "node demo.js",
+    "Gmail": "node GmailLogin.js"
   },
   "author": "",
   "license": "ISC"
