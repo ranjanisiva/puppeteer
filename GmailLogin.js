@@ -7,7 +7,7 @@ const app = express();
 //   console.log("Server started");
 //   });
 (async () => {
-    const prop = PropertiesReader('C:/Users/sriranjanis/Documents/Gmail_Login/Config.properties');
+    const prop = PropertiesReader('./Config.properties');
     getProperty = (pty) => {return prop.get(pty);}
     const browser = await puppeteer.launch({ headless: false,defaultViewport: null,
         args: ['--start-maximized'] , executablePath:"C:/Users/sriranjanis/AppData/Local/Google/Chrome/Application/chrome.exe"})
