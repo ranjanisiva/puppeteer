@@ -9,7 +9,7 @@ const PropertiesReader = require('properties-reader');
 (async () => {
     const prop = PropertiesReader('./Config.properties');
     getProperty = (pty) => {return prop.get(pty);}
-    const browser = await puppeteer.launch({ headless: true,defaultViewport: null,
+    const browser = await puppeteer.launch({ headless: false,defaultViewport: null,
         args: ['--start-maximized'] , executablePath:"C:/Users/sriranjanis/AppData/Local/Google/Chrome/Application/chrome.exe"})
     const page = await browser.newPage()
 
